@@ -1,5 +1,10 @@
 # PernoStock — sitio web
 
+> **Archivo personal, no es un proyecto en curso.**
+> Este fue mi primer sitio web, hecho en unos 7 días a los 18 años (2023–2024),
+> para la empresa en la que trabajaba. Se conserva tal cual, como recuerdo, y no
+> está pensado para seguir desarrollándose ni para publicarse.
+
 Sitio corporativo de **PernoStock Ltda.**, empresa chilena de venta de pernos,
 tuercas, golillas y elementos de fijación, con servicios de arriendo de
 maquinaria, calibración y mantención.
@@ -9,7 +14,7 @@ ni proceso de compilación. Se sube tal cual al hosting.
 
 ---
 
-## Cómo probarlo en local
+## Cómo abrirlo
 
 No hace falta instalar nada. Solo Python 3:
 
@@ -125,12 +130,12 @@ El DNS tarda hasta 4 horas en propagarse tras el cambio.
 
 ---
 
-## Problemas conocidos
+## Estado del proyecto al archivarlo
 
-Estas cosas requieren una decisión o una clave que no se puede inventar desde
-el código:
+No son errores: es simplemente cómo quedó. Se documenta para que quede claro que
+**nada de esto está roto por descuido**.
 
-### 1. La clave de reCAPTCHA es un placeholder
+### reCAPTCHA nunca estuvo activo
 
 Las 11 páginas con formulario de contacto tienen:
 
@@ -138,47 +143,38 @@ Las 11 páginas con formulario de contacto tienen:
 <div class="g-recaptcha" data-sitekey="pagina pernostock"></div>
 ```
 
-`pagina pernostock` no es una clave válida de Google reCAPTCHA, por lo que el
-widget **no se dibuja**. Hay que reemplazarla por la clave real del dominio:
+`pagina pernostock` es texto de relleno, no una clave válida de Google
+reCAPTCHA. El `<div>` simplemente se dibuja vacío y **el envío del formulario no
+se bloquea**: los formularios mandaban datos, sin captcha. Se dejó así.
 
-```bash
-grep -rl 'data-sitekey="pagina pernostock"' --include=*.html .
-```
+### Los formularios dependían del servidor real
 
-y sustituirla por la clave provista por Google reCAPTCHA v3.
+Apuntan a `/pub/casos-forms/formulario.php`, un endpoint PHP que vive en el
+hosting y nunca estuvo en el repositorio. Al trabajar siempre sobre el servidor
+real de la empresa —que era también el de pruebas— no hubo nunca un entorno
+separado donde probar el envío: se subía y se veía si funcionaba.
 
-### 2. Los formularios envían a un endpoint del servidor
+Por eso el enlace a las fichas que apuntaba a `http://localhost/`: funcionaba en
+la máquina donde se programaba y en ningún otro lado.
 
-Los formularios apuntan a `/pub/casos-forms/formulario.php`, que **no existe en
-este repositorio**: es un endpoint del servidor de producción. En local el
-formulario se ve y se valida, pero al enviar devuelve 404.
+### Dos páginas quedaron en construcción
 
-Para probarlos de verdad hace falta o bien ese PHP en el hosting, o un endpoint
-de pruebas propio.
+`preguntas_frecuentes.html` y `sugerencias.html` muestran un aviso de "en
+construcción". Es el estado en que se dejó.
 
-### 3. `preguntas_frecuentes.html` y `sugerencias.html` están sin contenido
+### El catálogo general vive en el servidor
 
-Ambas páginas muestran un aviso de "en construcción". Es el estado original del
-proyecto, no un error: falta escribir el contenido.
+El botón "Descarga nuestro Catálogo" y dos fichas apuntan a
+`https://pernostock.cl/...` porque esos archivos no están en el repositorio.
+Uno de ellos, `nueva-ficha-tecnica-golilla-reparticion.pdf`, falta desde antes:
+hay un `aviso.txt` en `media/pdf/fichas-tecnicas/` que lo explica.
 
-### 4. El catálogo general vive en el servidor de producción
-
-El botón "Descarga nuestro Catálogo" y dos fichas
-(`nueva-ficha-tecnica-golilla-reparticion.pdf` y
-`catalogo-estructural-baja.pdf`) apuntan a `https://pernostock.cl/...` porque
-esos archivos no están en este repositorio. Si se agregan a
-`media/pdf/fichas-tecnicas/`, se pueden enlazar localmente con:
-
-```bash
-python3 tools/fix_fichas_links.py
-```
-
-### 5. Los CSS están duplicados
+### Los CSS están duplicados
 
 Cada página carga su propia hoja de estilos en `css/archivos/`, y casi todas son
 copias del mismo bloque de ~7 KB con pequeñas diferencias. Funciona, pero
-cualquier cambio de estilo hay que replicarlo en varios archivos. Extraer un
-`css/base.css` común sería el siguiente paso lógico.
+cambiar un estilo exige editar varios archivos. Extrayendo un `css/base.css`
+común se arreglaría.
 
 ---
 
@@ -201,3 +197,33 @@ cualquier cambio de estilo hay que replicarlo en varios archivos. Extraer un
 
 Miembros de ASTM y RCSC. Marcas con las que se trabaja: Nelson, Skidmore,
 Unity, Tone, KFP, RNK y URRREA.
+
+---
+
+## Origen de este repositorio
+
+El proyecto se recuperó de una carpeta de trabajo en XAMPP (`htdocs/`) que
+llevaba años sin tocarse. Al recuperarla el sitio **no funcionaba**: no había
+página de inicio, las rutas de JavaScript apuntaban a carpetas que ya no
+existían y Bootstrap se cargaba desde dos CDNs dados de baja.
+
+El commit inicial de este repositorio es esa puesta en orden: se apartó el
+stack de XAMPP, se reunieron los archivos en la raíz, se repararon las rutas y
+se construyó la página de inicio que faltaba. **El diseño y los contenidos son
+los originales de 2023–2024**; lo único nuevo son la portada y la página de
+catálogos.
+
+Lo que **no** se conservó, por no formar parte del sitio:
+
+| Descartado | Motivo |
+|---|---|
+| `dashboard/`, `xampp/`, `webalizer/` | Boilerplate de XAMPP |
+| `htdocs/index.php`, `bitnami.css` | Archivos por defecto de XAMPP |
+| `notes/` con datos del hosting | Contenía la contraseña de FTP y del panel, en texto plano. **Esa contraseña se rotó.** |
+| `recursos_datos/` (852 KB) | Restos de la web anterior a Pernostock |
+| `pagina en construccion/` | Su contenido se integró en la raíz |
+
+> Una copia del material descartado quedó en `/tmp` durante la recuperación, y
+> se perdió al limpiarse esa carpeta. Nada de lo listado ahí afectaba al sitio,
+> pero sí significa que **el estado previo a la recuperación ya no existe**. Lo
+> que hay aquí es el sitio funcionando.

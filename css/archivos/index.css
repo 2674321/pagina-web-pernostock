@@ -1,0 +1,155 @@
+/* Hoja de estilos de la pagina de inicio.
+   Reutiliza el mismo sistema visual que el resto del sitio: fondo degradado
+   animado, acento darkred, tarjetas con sombra y separador rojo. */
+
+.icono_ubi { max-width: 2em; height: auto; }
+#logo-footer { max-width: 200px; height: auto; }
+
+html, body {
+    font-weight: normal;
+    font-family: 'Myriad Pro', sans-serif;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    margin-top: 70px;
+    color: #343a40;
+    background-color: #f5f5f5;
+}
+
+main {
+    margin-bottom: 50px;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.wrapper {
+    background: linear-gradient(218deg, #e4e4e4, #655c5c, #764040);
+    background-size: 600% 600%;
+    animation: AnimationName 55s ease infinite;
+    padding-top: 0;
+}
+
+@keyframes AnimationName {
+    0%   { background-position: 97% 0%; }
+    50%  { background-position: 4% 100%; }
+    100% { background-position: 97% 0%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .wrapper { animation: none; }
+}
+
+.logosup { max-width: 250px; max-height: 200px; }
+
+.separador-rojo {
+    border: none;
+    height: 2px;
+    background-color: darkred;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+.card-body {
+    background-color: #f9f9f9;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.titulocontacto { color: darkred; }
+.texto-servi { font-weight: bold; color: #333; }
+
+.form-group label { font-family: 'Myriad Pro', sans-serif; color: black; }
+
+.marcas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.marcas img {
+    max-width: 130px;
+    max-height: 90px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    margin: 10px;
+}
+
+.descarga-texto {
+    font-family: 'Myriad Pro', sans-serif;
+    color: red;
+}
+
+.carousel-item img {
+    max-height: 460px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.carousel-caption h3,
+.carousel-caption p {
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.btn-flotante {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: darkred;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+.btn-flotante:hover { transform: scale(1.1); }
+.fa-comment-alt { line-height: 60px; }
+
+footer {
+    font-family: 'Myriad Pro', sans-serif;
+    padding-top: 30px;
+    text-align: center;
+    box-shadow: 0 -0.5% 1.25% rgba(0, 0, 0, 0.1);
+    border: 3px solid darkred;
+    font-weight: normal;
+    background-color: #333;
+    color: #fff;
+}
+
+footer p, footer a {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: white;
+    font-family: 'Myriad Pro', sans-serif;
+    text-decoration: none;
+}
+
+footer a:hover { text-decoration: underline; }
+
+.contactofooter, .miemfooter, .pernofooter, .serviciofooter, .certifooter {
+    font-weight: bold;
+}
+
+#footer1 { width: 100%; margin-top: 0; }
+
+footer img:not(#logo-footer) { max-width: 120px; height: auto; }

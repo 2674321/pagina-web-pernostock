@@ -1,0 +1,1 @@
+$(document).ready(function(){ $('.dropdown-img').hover(function(){ var dropdownId = $(this).data('dropdown'); $('#' + dropdownId).css('display', 'block'); }, function(){ var dropdownId = $(this).data('dropdown'); $('#' + dropdownId).css('display', 'none'); }); });

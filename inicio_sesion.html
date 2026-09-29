@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión | PernoStock Ltda.cl</title>
+    <meta name="description" content="Inicia sesión en tu cuenta de Pernostock.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/archivos/inicio_sesion.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><img src="images/logo_pernostock/Logo_principal.png" alt="Nombre de Pernostock" class="logosup"></a>
+                <div class="d-flex align-items-center">
+                    <div class="navbar-text mr-2"><a href="ubicaciones.html"><img class="icono_ubi" src="images/ubicaciones/lugar.png" alt="Icono de ubicación" ></a></div>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAcerca" role="button"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Acerca de nosotros</a>
+                            <div class="dropdown-menu bg-secondary rounded" aria-labelledby="navbarDropdownAcerca">
+                                <a class="dropdown-item" href="ubicaciones.html">Ubicaciones</a>
+                                <a class="dropdown-item" href="sobre_la_empresa.html">Empresa</a>
+                                <a class="dropdown-item" href="sobre_calidad.html">Calidad</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownServicios" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Servicios</a>
+                            <div class="dropdown-menu bg-secondary rounded" aria-labelledby="navbarDropdownServicios">
+                                <a class="dropdown-item" href="pagina_servicios_principal.html">Nuestros servicios</a>
+                                <a class="dropdown-item" href="servicio_de_arriendo.html">Arriendo de maquinaria</a>
+                                <a class="dropdown-item" href="servicio_de_calibracion.html">Calibración</a>
+                                <a class="dropdown-item" href="servicio_mantenimiento.html">Mantención y reparación</a>
+                            </div>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="catalogos.html">Catálogos</a></li>
+                        <li class="nav-item original-element"><a class="nav-link btn btn-outline-danger rounded-pill px-3" href="https://pernostock.cl/pub/media/wysiwyg/pdf/catalogo-estructural-baja.pdf">Descarga nuestro Catálogo</a></li>
+                        <li class="nav-item nuevo-elemento d-none">
+                            <a class="nav-link btn btn-outline-danger rounded-pill px-3" href="https://pernostock.cl/pub/media/wysiwyg/pdf/catalogo-estructural-baja.pdf"><i class="fas fa-file-pdf"></i> Descargar Catálogo</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCuenta" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cuenta</a>
+                            <div class="dropdown-menu bg-secondary rounded" aria-labelledby="navbarDropdownCuenta">
+                                <a class="dropdown-item" href="inicio_sesion.html">Iniciar sesión</a>
+                                <a class="dropdown-item" href="crear_cuenta.html">Crear cuenta</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSocial" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fab fa-facebook-f"></i> <i class="fab fa-instagram"></i> <i class="fab fa-twitter"></i></a>
+                            <div class="dropdown-menu bg-secondary rounded" aria-labelledby="navbarDropdownSocial">
+                                <a class="dropdown-item" href="https://www.facebook.com/PernostockCoquimbo/"><i class="fab fa-facebook-f"></i> Facebook</a>
+                                <a class="dropdown-item" href="https://www.instagram.com/pernostock/"><i class="fab fa-instagram"></i> Instagram</a>
+                                <a class="dropdown-item" href="https://twitter.com/PernoStock_CL"><i class="fab fa-twitter"></i> Twitter</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <main>
+        <div class="container mt-4">
+            <div class="card-body text-center">
+                <h2 class="mb-4">Iniciar Sesión</h2>
+                <hr class="separador-rojo">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <form action="/login" method="post">
+                            <div class="form-group">
+                                <label for="username">Usuario<p class="asterisco" >*</p>:</label>
+                                <input type="text" id="username" name="username" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Contraseña:<p class="asterisco" >*</p></label>
+                                <input type="password" id="password" name="password" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                        </form>
+                        <hr class="separador-rojo">
+                        <p>¿No tienes una cuenta? <a href="crear_cuenta.html">Regístrate aquí</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>  
+            <a class="btn btn-primary btn-flotante"><i class="fas fa-comment-alt"></i></a>
+        </main>
+</div class="wrapper">
+<footer id="footer1" class="py-3">
+    <div class="container text-center">
+        <img id="logo-footer" src="images/logo_pernostock/blanco/pernostock_logo_principal.png" alt="Logo de Pernostock" >
+        <div class="row">
+            <div class="col-md-3 subtitulo">
+                <p class="certifooter" >CERTIFICADO:</p>
+                <p><img src="images/certificados/certificado-1.png" alt="Certificado"></p>
+                <p class="miemfooter">MIEMBROS:</p>
+                <p><img src="images/miembros/astm.png" alt="ASTM Logo"></p>
+                <p><img src="images/miembros/rcsc.png" alt="RCSC Logo"></p>
+            </div>
+            <div class="col-md-3 subtitulo">
+                <p class="pernofooter">Pernostock</p>
+                <p><a href="index.html">Pagina Principal</a></p>
+                <p><a href="sobre_la_empresa.html">Empresa</a></p>
+                <p><a href="sobre_calidad.html">Calidad</a></p>
+                <p><a href="catalogos.html">Catálogos</a></p>
+                <p><a href="pagina_servicios_principal.html">Servicios</a></p>
+            </div>
+            <div class="col-md-3 subtitulo">
+                <p class="serviciofooter" >Servicio al Cliente</p>
+                <p><a href="preguntas_frecuentes.html">Preguntas Frecuentes</a></p>
+                <p><a href="sugerencias.html">Sugerencias y Reclamos</a></p>
+                <p><img src="images/metodos_de_pago/webpay-f.png" alt="Webpay"></p>
+                <p><img src="images/metodos_de_pago/transbank.png" alt="Bancaria"></p>
+            </div>
+            <div class="col-md-3 subtitulo">
+                <p class="contactofooter" >Contacto</p>
+                <p>Av. Los Libertadores  N°16, Colina, Santiago, Chile. | Código Postal: 9670146</p>
+                <p>Central: <a href="tel:+56226366100">+56 2 2636 6100</a> | Ventas: <a href="tel:+56226366120">+56 2 2636 6120</a> | <a href="mailto:ventas@pernostock.cl">ventas@pernostock.cl</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+<footer class="second-footer py-2">
+    <div class="container text-center">
+        <p class="copy_footer">PernoStock LTDA 2018 © TODOS LOS DERECHOS RESERVADOS</p>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="js/inicio_de_sesion.js"></script>
+    <script src="js/javascript.js"></script>
+</body>
+</html>

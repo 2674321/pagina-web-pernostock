@@ -1,0 +1,24 @@
+# Git no debe intentar diff ni comprimir de forma ineficiente los binarios
+# pesados (fichas tecnicas en PDF, fotografias y el catalogo comprimido).
+*.pdf    binary diff=delta -delta -text
+*.zip    binary -text
+*.png    binary -text
+*.jpg    binary -text
+*.jpeg   binary -text
+*.gif    binary -text
+*.ico    binary -text
+*.woff   binary -text
+*.woff2  binary -text
+*.ttf    binary -text
+*.eot    binary -text
+
+# Normalizar finales de linea en los archivos de texto.
+*.html   text eol=lf
+*.css    text eol=lf
+*.js     text eol=lf
+*.py     text eol=lf
+*.md     text eol=lf
+*.txt    text eol=lf
+
+# Marcar como generado el contenido que no interesa revisar.
+_original/** linguist-generated=true

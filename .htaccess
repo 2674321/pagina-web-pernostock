@@ -1,0 +1,28 @@
+# Configuracion de Apache para el sitio de Pernostock.
+
+# Pagina de error personalizada.
+ErrorDocument 404 /404.html
+
+# Cache y compresion de archivos estaticos.
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css                "access plus 1 month"
+    ExpiresByType application/javascript  "access plus 1 month"
+    ExpiresByType image/png               "access plus 6 months"
+    ExpiresByType image/jpeg              "access plus 6 months"
+    ExpiresByType image/svg+xml           "access plus 6 months"
+    ExpiresByType image/x-icon            "access plus 1 year"
+    ExpiresByType application/pdf         "access plus 6 months"
+</IfModule>
+
+# Evita listados de directorio.
+Options -Indexes
+
+# No exponer archivos de desarrollo.
+<FilesMatch "\.(bak|log|ini|sql|md)$">
+    Require all denied
+</FilesMatch>

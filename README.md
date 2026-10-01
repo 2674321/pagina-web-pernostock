@@ -1,5 +1,7 @@
 # PernoStock — sitio web
 
+**Autor:** [Patricio Varela C.](https://github.com/2674321) · **ORCID:** [0009-0002-1087-9445](https://orcid.org/0009-0002-1087-9445) · **Citación:** [CITATION.cff](CITATION.cff)
+
 > **Archivo personal, no es un proyecto en curso.**
 > Este fue mi primer sitio web, hecho en unos 7 días a los 18 años (2023–2024),
 > para la empresa en la que trabajaba. Se conserva tal cual, como recuerdo, y no

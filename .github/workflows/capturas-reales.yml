@@ -1,0 +1,93 @@
+name: Capturas reales del sitio (QA)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/capturas-reales.yml
+
+permissions:
+  contents: write
+
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar Chromium
+        run: |
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Capturar el sitio real servido desde este commit
+        run: |
+          python -m http.server 8765 --bind 127.0.0.1 >/tmp/capturas-servidor.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          python - <<'PY'
+          from pathlib import Path
+          import time
+          from urllib.request import urlopen
+          from playwright.sync_api import sync_playwright
+
+          for i in range(40):
+              try:
+                  with urlopen("http://127.0.0.1:8765/", timeout=2) as r:
+                      if r.status == 200:
+                          break
+              except Exception:
+                  time.sleep(.25)
+          else:
+              raise RuntimeError("El servidor estático no respondió")
+          destinos = [
+        ("01-inicio", "/", 1440, 900),
+        ("02-catalogos", "/catalogos.html", 1440, 900),
+        ("03-inicio-movil", "/", 390, 844),
+          ]
+          salida = Path("docs/screenshots")
+          salida.mkdir(parents=True, exist_ok=True)
+          with sync_playwright() as p:
+              browser = p.chromium.launch(headless=True, args=["--no-sandbox"])
+              try:
+                  for nombre, ruta, ancho, alto in destinos:
+                      page = browser.new_page(viewport={"width": ancho, "height": alto},
+                                              device_scale_factor=1, locale="es-CL",
+                                              reduced_motion="reduce")
+                      response = page.goto("http://127.0.0.1:8765" + ruta,
+                                           wait_until="domcontentloaded", timeout=30000)
+                      if response is None or response.status != 200:
+                          raise RuntimeError(f"Falló {ruta}: {response.status if response else 'sin respuesta'}")
+                      page.evaluate("document.fonts.ready")
+                      page.wait_for_timeout(800)
+                      objetivo = salida / (nombre + ".png")
+                      page.screenshot(path=str(objetivo), animations="disabled")
+                      if objetivo.stat().st_size < 6000:
+                          raise RuntimeError("Captura vacía: " + str(objetivo))
+                      print(f"{objetivo}: {objetivo.stat().st_size} bytes")
+                      page.close()
+              finally:
+                  browser.close()
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: capturas-reales-qa
+          path: docs/screenshots/*.png
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Publicar capturas comprobadas
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/screenshots/*.png
+          if git diff --cached --quiet; then
+            echo "No hay imágenes nuevas"
+            exit 0
+          fi
+          git diff --cached --check
+          git commit -m "docs: publicar capturas reales del sitio"
+          git push origin HEAD:main

@@ -22,6 +22,16 @@ ni proceso de compilación. Se sube tal cual al hosting.
 
 ---
 
+## Capturas del sitio histórico
+
+Capturas reales del código HTML original, ejecutado localmente con Chromium. Son imágenes del proyecto conservado como archivo; **no representan un sitio actualmente mantenido**.
+
+| Inicio | Catálogos |
+|---|---|
+| ![Inicio del sitio PernoStock](docs/screenshots/01-inicio.png) | ![Página de catálogos](docs/screenshots/02-catalogos.png) |
+
+[Ver la portada en móvil](docs/screenshots/03-inicio-movil.png)
+
 ## Cómo abrirlo
 
 No hace falta instalar nada. Solo Python 3:

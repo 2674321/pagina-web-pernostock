@@ -44,9 +44,9 @@ jobs:
           else:
               raise RuntimeError("El servidor estático no respondió")
           destinos = [
-        ("01-inicio", "/", 1440, 900),
-        ("02-catalogos", "/catalogos.html", 1440, 900),
-        ("03-inicio-movil", "/", 390, 844),
+          ("01-inicio", "/", 1440, 900),
+          ("02-catalogos", "/catalogos.html", 1440, 900),
+          ("03-inicio-movil", "/", 390, 844),
           ]
           salida = Path("docs/screenshots")
           salida.mkdir(parents=True, exist_ok=True)
